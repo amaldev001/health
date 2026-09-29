@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  test-and-lint:
+    name: Backend & Frontend Tests + Linting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: |
+            server/package-lock.json
+            client/package-lock.json
+
+      - name: Install Server Dependencies
+        run: npm --prefix server ci
+
+      - name: Install Client Dependencies
+        run: npm --prefix client ci
+
+      - name: Run Server Tests
+        run: npm --prefix server run test
+
+      - name: Run Client Tests
+        run: npm --prefix client run test
+
+      - name: Lint Server Code
+        run: npm --prefix server run lint
+
+      - name: Lint Client Code
+        run: npm --prefix client run lint
+
+      - name: Build Client SPA
+        run: npm --prefix client run build

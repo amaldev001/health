@@ -1,0 +1,20 @@
+{
+  "name": "healthcare-appointment-management-system",
+  "version": "1.0.0",
+  "description": "Full-Stack Healthcare Appointment Management Platform",
+  "scripts": {
+    "start": "npm --prefix server start",
+    "server": "npm --prefix server start",
+    "server:dev": "npm --prefix server run dev",
+    "client": "npm --prefix client run dev",
+    "build": "npm --prefix client run build",
+    "create-admin": "npm --prefix server run create-admin",
+    "clean-db": "npm --prefix server run clean-db",
+    "test": "npm --prefix server run test && npm --prefix client run test",
+    "test:server": "npm --prefix server run test",
+    "test:client": "npm --prefix client run test",
+    "lint": "npm --prefix server run lint && npm --prefix client run lint",
+    "lint:server": "npm --prefix server run lint",
+    "lint:client": "npm --prefix client run lint"
+  }
+}
